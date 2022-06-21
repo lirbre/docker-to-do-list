@@ -10,8 +10,8 @@ const Index = () => {
     <Main
       meta={
         <Meta
-          title="Evil Boilerplate"
-          description="The perfect boilerplate for your project."
+          title="To do List"
+          description="A minimalist and functional To do List."
         />
       }
     >
