@@ -1,10 +1,27 @@
-import { useTheme } from 'next-themes'
+import { useEffect } from 'react'
 
+import { useToDo } from '@/hooks/useToDo'
 import { Meta } from '@/layouts'
 import { Main } from '@/templates'
 
 const Index = () => {
-  const { resolvedTheme, setTheme } = useTheme()
+  const { addToDo, removeToDo, ToDoList } = useToDo()
+
+  const handleAdd = () => {
+    addToDo({
+      id: 1,
+      priority: 'high',
+      title: 'lol'
+    })
+  }
+
+  const handleRemove = () => {
+    removeToDo(1)
+  }
+
+  useEffect(() => {
+    console.log('my todo list ->', ToDoList)
+  }, [ToDoList])
 
   return (
     <Main
@@ -15,31 +32,9 @@ const Index = () => {
         />
       }
     >
-      <div
-        className="container"
-        onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-      >
-        <h4>Sphinx of black quartz, judge my vow.</h4>
-        <h5>Sphinx of black quartz, judge my vow.</h5>
-        <h6>Sphinx of black quartz, judge my vow.</h6>
-        <p>
-          Sphinx of black quartz, judge my vow. Sphinx of black quartz, judge my
-          vow.Sphinx of black quartz, judge my vow. Sphinx of black quartz,
-          judge my vow. Sphinx of black quartz, judge my vow. Sphinx of black
-          quartz, judge my vow.
-        </p>
-        <p>
-          Sphinx of black quartz, judge my vow. Sphinx of black quartz, judge my
-          vow.Sphinx of black quartz, judge my vow. Sphinx of black quartz,
-          judge my vow. Sphinx of black quartz, judge my vow. Sphinx of black
-          quartz, judge my vow.
-        </p>
-        <p>
-          Sphinx of black quartz, judge my vow. Sphinx of black quartz, judge my
-          vow.Sphinx of black quartz, judge my vow. Sphinx of black quartz,
-          judge my vow. Sphinx of black quartz, judge my vow. Sphinx of black
-          quartz, judge my vow.
-        </p>
+      <div className="container flex flex-col gap-4 pt-4">
+        <button onClick={handleAdd}>strange button to test add</button>
+        <button onClick={handleRemove}>strange button to test remove</button>
       </div>
     </Main>
   )
