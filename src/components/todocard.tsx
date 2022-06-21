@@ -2,23 +2,38 @@ import { useToDo } from '@/hooks'
 import { CardComponentProps } from '@/types/component_types'
 // import { AiFillEdit } from 'react-icons/ai'
 
-export const ToDoCard = ({ priority, title, position }: CardComponentProps) => {
-  const { removeToDo } = useToDo()
+export const ToDoCard = ({
+  priority,
+  title,
+  position,
+  isComplete
+}: CardComponentProps) => {
+  const { removeToDo, completeTodo } = useToDo()
 
   const handleRemove = () => removeToDo(position)
+  const handleComplete = () => completeTodo(position)
 
   return (
     <div
-      className={`min-h-[100px] flex items-center justify-between gap-4 bg-secondary p-3 rounded-sm shadow-lg shadow-black/25 border-b-2 text-[#f2f2f2] border-${priority}`}
+      className={`min-h-[100px] flex items-center justify-between gap-4 bg-secondary p-3 rounded-sm shadow-lg shadow-black/25 border-b-2 text-[#f2f2f2] border-${priority} ${
+        isComplete ? 'opacity-70' : 'opacity-100'
+      }`}
     >
-      <small className="w-3/4 sm:w-11/12">{title}</small>
+      <button
+        onClick={handleComplete}
+        className={`w-3/4 sm:w-11/12 cursor-pointer text-left h-full ${
+          isComplete ? 'line-through' : ''
+        }`}
+      >
+        <small>{title}</small>
+      </button>
       <div className="flex flex-col items-center justify-center gap-2">
         {/* <span>
                     <p><AiFillEdit /></p>
                 </span> */}
-        <span onClick={handleRemove} className="cursor-pointer">
+        <button onClick={handleRemove} className="z-10 cursor-pointer">
           <p className="font-black text-[#f2f2f2] hover:opacity-80">X</p>
-        </span>
+        </button>
       </div>
     </div>
   )

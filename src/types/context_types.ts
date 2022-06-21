@@ -9,6 +9,7 @@ export interface ToDoContextProps {
     newTitle: string,
     newPriority: PriorityType
   ) => void
+  completeTodo: (position: number) => void
   removeToDo: (position: number) => void
   ToDoList: CardProps[]
   setToDoList: Dispatch<SetStateAction<CardProps[]>>

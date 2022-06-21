@@ -8,13 +8,14 @@ export const ToDoContext = createContext({} as ToDoContextProps)
 export const ToDoProvider = ({ children }: any) => {
   const [ToDoList, setToDoList] = useState<CardProps[]>([])
 
-  const addToDo = ({ id, priority, title }: CardProps) => {
+  const addToDo = ({ id, priority, title, isComplete }: CardProps) => {
     setToDoList([
       ...ToDoList,
       {
         id,
         priority,
-        title
+        title,
+        isComplete
       }
     ])
   }
@@ -38,6 +39,14 @@ export const ToDoProvider = ({ children }: any) => {
     setToDoList(newList)
   }
 
+  const completeTodo = (position: number) => {
+    const newList = [...ToDoList]
+
+    newList[position]!.isComplete = !newList[position]!.isComplete
+
+    setToDoList(newList)
+  }
+
   return (
     <ToDoContext.Provider
       value={{
@@ -45,6 +54,7 @@ export const ToDoProvider = ({ children }: any) => {
         editToDo,
         removeToDo,
         setToDoList,
+        completeTodo,
         ToDoList
       }}
     >

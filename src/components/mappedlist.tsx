@@ -9,15 +9,18 @@ export const MappedList = () => {
   const { ToDoList } = useToDo()
 
   const ToDoMap = useMemo(() => {
-    return ToDoList.map(({ id, priority, title }: CardProps, i: number) => (
-      <ToDoCard
-        key={id}
-        id={id}
-        priority={priority}
-        title={title}
-        position={i}
-      />
-    ))
+    return ToDoList.map(
+      ({ id, priority, title, isComplete }: CardProps, i: number) => (
+        <ToDoCard
+          key={id}
+          id={id}
+          priority={priority}
+          title={title}
+          isComplete={isComplete}
+          position={i}
+        />
+      )
+    )
   }, [ToDoList])
 
   return (

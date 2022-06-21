@@ -2,12 +2,14 @@ export interface CardProps {
   title: string
   priority: 'low' | 'medium' | 'high'
   id: number
+  isComplete: boolean
 }
 
 export interface CardComponentProps {
   title: string
   priority: 'low' | 'medium' | 'high'
   id: number
+  isComplete: boolean
   position: number
 }
 

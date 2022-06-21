@@ -24,7 +24,8 @@ export const CompleteForm = () => {
     addToDo({
       id: newId + 1,
       priority: form.priority,
-      title: form.title
+      title: form.title,
+      isComplete: false
     })
   }
 
