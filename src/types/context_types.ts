@@ -4,7 +4,7 @@ import { CardProps } from './component_types'
 
 export interface ToDoContextProps {
   addToDo: ({ id, priority, title }: CardProps) => void
-  removeToDo: (id: number) => void
+  removeToDo: (position: number) => void
   ToDoList: CardProps[]
   setToDoList: Dispatch<SetStateAction<CardProps[]>>
 }

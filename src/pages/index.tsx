@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
 
+import { MappedList } from '@/components'
 import { useToDo } from '@/hooks/useToDo'
 import { Meta } from '@/layouts'
 import { Main } from '@/templates'
 
 const Index = () => {
-  const { addToDo, removeToDo, ToDoList } = useToDo()
+  const { addToDo, ToDoList } = useToDo()
 
   const handleAdd = () => {
     const newId = ToDoList[ToDoList.length - 1]?.id || 0
@@ -15,10 +16,6 @@ const Index = () => {
       priority: 'high',
       title: 'lol'
     })
-  }
-
-  const handleRemove = () => {
-    removeToDo(1)
   }
 
   useEffect(() => {
@@ -36,7 +33,7 @@ const Index = () => {
     >
       <div className="container flex flex-col gap-4 pt-4">
         <button onClick={handleAdd}>strange button to test add</button>
-        <button onClick={handleRemove}>strange button to test remove</button>
+        <MappedList />
       </div>
     </Main>
   )
