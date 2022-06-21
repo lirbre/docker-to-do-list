@@ -8,8 +8,10 @@ const Index = () => {
   const { addToDo, removeToDo, ToDoList } = useToDo()
 
   const handleAdd = () => {
+    const newId = ToDoList[ToDoList.length - 1]?.id || 0
+
     addToDo({
-      id: 1,
+      id: newId + 1,
       priority: 'high',
       title: 'lol'
     })
