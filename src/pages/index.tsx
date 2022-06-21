@@ -22,7 +22,7 @@ const Index = () => {
         />
       }
     >
-      <div className="container flex flex-col gap-4 overflow-hidden pt-4">
+      <div className="container flex w-11/12 flex-col gap-4 overflow-hidden pt-4">
         <CompleteForm />
         <MappedList />
       </div>

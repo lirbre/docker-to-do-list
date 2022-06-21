@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react'
 
-import { CardProps } from '@/types/component_types'
+import { CardProps, PriorityType } from '@/types/component_types'
 import { ToDoContextProps } from '@/types/context_types'
 
 export const ToDoContext = createContext({} as ToDoContextProps)
@@ -25,10 +25,24 @@ export const ToDoProvider = ({ children }: any) => {
     setToDoList(newList)
   }
 
+  const editToDo = (
+    position: number,
+    newTitle: string,
+    newPriority: PriorityType
+  ) => {
+    const newList = [...ToDoList]
+
+    newList[position]!.title = newTitle
+    newList[position]!.priority = newPriority
+
+    setToDoList(newList)
+  }
+
   return (
     <ToDoContext.Provider
       value={{
         addToDo,
+        editToDo,
         removeToDo,
         setToDoList,
         ToDoList

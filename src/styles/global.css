@@ -41,3 +41,15 @@ body {
     max-width: clamp(728px, 75vw, calc(1440px - 300px));
   }
 }
+
+.border-low {
+  border-color: #FAC213;
+}
+
+.border-medium {
+  border-color: #F77E21;
+}
+
+.border-high {
+  border-color: #D61C4E;
+}

@@ -20,5 +20,9 @@ export const MappedList = () => {
     ))
   }, [ToDoList])
 
-  return <div>{ToDoMap}</div>
+  return (
+    <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-3">
+      {ToDoMap}
+    </div>
+  )
 }

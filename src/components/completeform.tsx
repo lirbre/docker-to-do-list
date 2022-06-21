@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { useToDo } from '@/hooks'
 import { FormProps, PriorityType } from '@/types/component_types'
@@ -12,6 +13,11 @@ export const CompleteForm = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
+
+    if (form.title === '') {
+      toast.warn("Don't add empty To Do.")
+      return
+    }
 
     const newId = ToDoList[ToDoList.length - 1]?.id || 0
 
@@ -28,13 +34,13 @@ export const CompleteForm = () => {
         value={form.title}
         onChange={(e) => setForm({ ...form, title: e.target.value })}
         type={'text'}
-        className="w-3/4"
+        className="w-3/4 bg-secondary p-3 text-[#f2f2f2]"
       />
       <select
         onChange={(e) =>
           setForm({ ...form, priority: e.target.value as PriorityType })
         }
-        className="w-1/4 bg-[#020202]"
+        className="w-1/4 bg-secondary p-3 text-[#f2f2f2]"
       >
         <option value={'low'}>Low</option>
         <option value={'medium'}>Medium</option>

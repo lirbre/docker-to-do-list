@@ -19,7 +19,9 @@
     "next-seo": "^5.4.0",
     "next-themes": "^0.1.1",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-icons": "^4.4.0",
+    "react-toastify": "^9.0.5"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^12.1.4",
