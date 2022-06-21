@@ -31,7 +31,7 @@ const Index = () => {
         />
       }
     >
-      <div className="container flex flex-col gap-4 pt-4">
+      <div className="container flex flex-col gap-4 overflow-hidden pt-4">
         <button onClick={handleAdd}>strange button to test add</button>
         <MappedList />
       </div>
