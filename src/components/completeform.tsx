@@ -27,8 +27,9 @@ export const CompleteForm = () => {
       <input
         value={form.title}
         onChange={(e) => setForm({ ...form, title: e.target.value })}
+        type={'text'}
         className="w-3/4"
-      ></input>
+      />
       <select
         onChange={(e) =>
           setForm({ ...form, priority: e.target.value as PriorityType })
