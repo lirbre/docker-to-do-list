@@ -7,9 +7,13 @@ import '../styles/typography.css'
 import { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
 
+import { ToDoProvider } from '@/context'
+
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <ThemeProvider>
-    <Component {...pageProps} />
+    <ToDoProvider>
+      <Component {...pageProps} />
+    </ToDoProvider>
   </ThemeProvider>
 )
 
