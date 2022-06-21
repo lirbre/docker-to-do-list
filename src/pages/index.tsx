@@ -1,22 +1,13 @@
 import { useEffect } from 'react'
 
 import { MappedList } from '@/components'
+import { CompleteForm } from '@/components/completeform'
 import { useToDo } from '@/hooks/useToDo'
 import { Meta } from '@/layouts'
 import { Main } from '@/templates'
 
 const Index = () => {
-  const { addToDo, ToDoList } = useToDo()
-
-  const handleAdd = () => {
-    const newId = ToDoList[ToDoList.length - 1]?.id || 0
-
-    addToDo({
-      id: newId + 1,
-      priority: 'high',
-      title: 'lol'
-    })
-  }
+  const { ToDoList } = useToDo()
 
   useEffect(() => {
     console.log('my todo list ->', ToDoList)
@@ -32,7 +23,7 @@ const Index = () => {
       }
     >
       <div className="container flex flex-col gap-4 overflow-hidden pt-4">
-        <button onClick={handleAdd}>strange button to test add</button>
+        <CompleteForm />
         <MappedList />
       </div>
     </Main>

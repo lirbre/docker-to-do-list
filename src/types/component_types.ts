@@ -10,3 +10,10 @@ export interface CardComponentProps {
   id: number
   position: number
 }
+
+export interface FormProps {
+  title: string
+  priority: 'low' | 'medium' | 'high'
+}
+
+export type PriorityType = 'low' | 'medium' | 'high'
