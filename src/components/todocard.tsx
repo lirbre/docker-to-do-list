@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { AiFillEdit } from 'react-icons/ai'
 
 import { useModal, useToDo } from '@/hooks'
@@ -10,10 +11,15 @@ export const ToDoCard = ({
   isComplete
 }: CardComponentProps) => {
   const { removeToDo, completeTodo } = useToDo()
-  const { open } = useModal()
+  const { open, setTitle, setBody } = useModal()
 
-  const handleRemove = () => removeToDo(position)
-  const handleComplete = () => completeTodo(position)
+  const handleRemove = useCallback(() => removeToDo(position), [position])
+  const handleComplete = useCallback(() => completeTodo(position), [position])
+  const handleEdit = () => {
+    setTitle('Editing a To Do')
+    setBody(<></>)
+    open()
+  }
 
   return (
     <div
@@ -30,7 +36,7 @@ export const ToDoCard = ({
         <small>{title}</small>
       </button>
       <div className="flex flex-col items-center justify-center gap-2">
-        <button onClick={open} className="z-10 cursor-pointer">
+        <button onClick={handleEdit} className="z-10 cursor-pointer">
           <p className="font-black text-[#f2f2f2] hover:opacity-80">
             <AiFillEdit />
           </p>
