@@ -35,6 +35,7 @@ export const ToDoProvider = ({ children }: any) => {
 
     newList[position]!.title = newTitle
     newList[position]!.priority = newPriority
+    newList[position]!.isComplete = false
 
     setToDoList(newList)
   }
