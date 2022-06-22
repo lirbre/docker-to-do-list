@@ -15,7 +15,7 @@ export const CompleteForm = () => {
     e.preventDefault()
 
     if (form.title === '') {
-      toast.warn("Don't add empty To Do.")
+      toast.warn('Please add a Title.')
       return
     }
 
