@@ -12,7 +12,7 @@ import { ToastContainer } from 'react-toastify'
 import { ModalProvider, ToDoProvider } from '@/context'
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
-  <ThemeProvider theme={'dark'}>
+  <ThemeProvider forcedTheme={'dark'}>
     <ModalProvider>
       <ToDoProvider>
         <Component {...pageProps} />
