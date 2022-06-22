@@ -1,6 +1,7 @@
-import { useToDo } from '@/hooks'
+import { AiFillEdit } from 'react-icons/ai'
+
+import { useModal, useToDo } from '@/hooks'
 import { CardComponentProps } from '@/types/component_types'
-// import { AiFillEdit } from 'react-icons/ai'
 
 export const ToDoCard = ({
   priority,
@@ -9,6 +10,7 @@ export const ToDoCard = ({
   isComplete
 }: CardComponentProps) => {
   const { removeToDo, completeTodo } = useToDo()
+  const { open } = useModal()
 
   const handleRemove = () => removeToDo(position)
   const handleComplete = () => completeTodo(position)
@@ -28,9 +30,11 @@ export const ToDoCard = ({
         <small>{title}</small>
       </button>
       <div className="flex flex-col items-center justify-center gap-2">
-        {/* <span>
-                    <p><AiFillEdit /></p>
-                </span> */}
+        <button onClick={open} className="z-10 cursor-pointer">
+          <p className="font-black text-[#f2f2f2] hover:opacity-80">
+            <AiFillEdit />
+          </p>
+        </button>
         <button onClick={handleRemove} className="z-10 cursor-pointer">
           <p className="font-black text-[#f2f2f2] hover:opacity-80">X</p>
         </button>

@@ -9,14 +9,16 @@ import { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
 import { ToastContainer } from 'react-toastify'
 
-import { ToDoProvider } from '@/context'
+import { ModalProvider, ToDoProvider } from '@/context'
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <ThemeProvider theme={'dark'}>
-    <ToDoProvider>
-      <Component {...pageProps} />
-      <ToastContainer toastClassName="text-sm" theme="dark" />
-    </ToDoProvider>
+    <ModalProvider>
+      <ToDoProvider>
+        <Component {...pageProps} />
+        <ToastContainer toastClassName="text-sm" theme="dark" />
+      </ToDoProvider>
+    </ModalProvider>
   </ThemeProvider>
 )
 

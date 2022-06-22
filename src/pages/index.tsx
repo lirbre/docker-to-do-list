@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { MappedList } from '@/components'
+import { MappedList, Modal } from '@/components'
 import { CompleteForm } from '@/components/completeform'
 import { useToDo } from '@/hooks/useToDo'
 import { Meta } from '@/layouts'
@@ -26,6 +26,7 @@ const Index = () => {
         <CompleteForm />
         <MappedList />
       </div>
+      <Modal />
     </Main>
   )
 }
