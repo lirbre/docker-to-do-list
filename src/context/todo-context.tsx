@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react'
+import { toast } from 'react-toastify'
 
 import { CardProps, PriorityType } from '@/types/component_types'
 import { ToDoContextProps } from '@/types/context_types'
@@ -32,6 +33,11 @@ export const ToDoProvider = ({ children }: any) => {
     newPriority: PriorityType
   ) => {
     const newList = [...ToDoList]
+
+    if (newTitle === newList[position]!.title) {
+      toast.warn('Change something to edit.')
+      return
+    }
 
     newList[position]!.title = newTitle
     newList[position]!.priority = newPriority
