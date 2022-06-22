@@ -27,6 +27,11 @@ export const CompleteForm = () => {
       title: form.title,
       isComplete: false
     })
+
+    setForm({
+      title: '',
+      priority: 'low'
+    })
   }
 
   return (
@@ -41,6 +46,7 @@ export const CompleteForm = () => {
         onChange={(e) =>
           setForm({ ...form, priority: e.target.value as PriorityType })
         }
+        value={form.priority}
         className="w-1/4 bg-secondary p-3 text-[#f2f2f2]"
       >
         <option value={'low'}>Low</option>

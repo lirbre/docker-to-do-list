@@ -1,8 +1,9 @@
-import { useCallback } from 'react'
 import { AiFillEdit } from 'react-icons/ai'
 
 import { useModal, useToDo } from '@/hooks'
 import { CardComponentProps } from '@/types/component_types'
+
+import { EditModal } from './_Modal'
 
 export const ToDoCard = ({
   priority,
@@ -11,14 +12,14 @@ export const ToDoCard = ({
   isComplete
 }: CardComponentProps) => {
   const { removeToDo, completeTodo } = useToDo()
-  const { open, setTitle, setBody } = useModal()
+  const { setIsOpen, setTitle, setBody } = useModal()
 
-  const handleRemove = useCallback(() => removeToDo(position), [position])
-  const handleComplete = useCallback(() => completeTodo(position), [position])
+  const handleRemove = () => removeToDo(position)
+  const handleComplete = () => completeTodo(position)
   const handleEdit = () => {
     setTitle('Editing a To Do')
-    setBody(<></>)
-    open()
+    setBody(<EditModal position={position} />)
+    setIsOpen(true)
   }
 
   return (
