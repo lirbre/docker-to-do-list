@@ -34,7 +34,10 @@ export const ToDoProvider = ({ children }: any) => {
   ) => {
     const newList = [...ToDoList]
 
-    if (newTitle === newList[position]!.title) {
+    if (
+      newTitle === newList[position]!.title &&
+      newPriority === newList[position]!.priority
+    ) {
       toast.warn('Change something to edit.')
       return
     }
