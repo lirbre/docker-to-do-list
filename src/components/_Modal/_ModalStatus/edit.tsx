@@ -47,6 +47,7 @@ export const EditModal = ({ position }: EditModalProps) => {
             setForm({ ...form, priority: e.target.value as PriorityType })
           }
           className="w-1/4 bg-secondary p-3 text-[#f2f2f2]"
+          value={form.priority}
         >
           <option value={'low'}>Low</option>
           <option value={'medium'}>Medium</option>
