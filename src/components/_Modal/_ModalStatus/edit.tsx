@@ -67,7 +67,7 @@ export const EditModal = ({ position }: EditModalProps) => {
         <button
           type={'reset'}
           onClick={close}
-          className="w-full bg-[#FF5B00] p-3"
+          className="w-full bg-[#d1342fff] p-3"
         >
           <p className="font-black text-[#f2f2f2]">Cancel</p>
         </button>

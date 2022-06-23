@@ -19,10 +19,10 @@
 .dark,
 [data-theme='dark'] {
 
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #242424;
+  --bg-primary: #0a0a0aff;
+  --bg-secondary: #1a181aff;
 
-  --text-primary: #bfbfbf;
+  --text-primary: #eee3c1ff;
   --text-secondary: #8c8c8c;
 }
 
