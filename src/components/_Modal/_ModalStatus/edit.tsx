@@ -36,23 +36,32 @@ export const EditModal = ({ position }: EditModalProps) => {
       onSubmit={(e) => handleSubmit(e)}
     >
       <div className="flex w-full justify-between gap-4">
-        <input
-          value={form.title}
-          onChange={(e) => setForm({ ...form, title: e.target.value })}
-          type={'text'}
-          className="w-3/4 bg-secondary p-3 text-[#f2f2f2]"
-        />
-        <select
-          onChange={(e) =>
-            setForm({ ...form, priority: e.target.value as PriorityType })
-          }
-          className="w-1/4 bg-secondary p-3 text-[#f2f2f2]"
-          value={form.priority}
-        >
-          <option value={'low'}>Low</option>
-          <option value={'medium'}>Medium</option>
-          <option value={'high'}>High</option>
-        </select>
+        <label className="w-3/4 text-[#f2f2f2]">
+          <small>New Title:</small>
+          <input
+            value={form.title}
+            onChange={(e) => setForm({ ...form, title: e.target.value })}
+            type={'text'}
+            className="w-full bg-secondary p-3 text-[#f2f2f2]"
+          />
+        </label>
+        <label className="w-1/4 text-[#f2f2f2]">
+          <small>New Priority:</small>
+          <select
+            onChange={(e) =>
+              setForm({ ...form, priority: e.target.value as PriorityType })
+            }
+            className="w-full bg-secondary p-3 text-[#f2f2f2]"
+            value={form.priority}
+          >
+            <option value="" disabled>
+              Priority
+            </option>
+            <option value={'low'}>Low</option>
+            <option value={'medium'}>Medium</option>
+            <option value={'high'}>High</option>
+          </select>
+        </label>
       </div>
       <div className="flex w-full justify-between gap-4">
         <button
