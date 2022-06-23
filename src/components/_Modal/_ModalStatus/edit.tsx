@@ -70,6 +70,7 @@ export const EditModal = ({ id, title, priority }: EditModalProps) => {
           type={'reset'}
           onClick={close}
           className="w-full bg-[#d1342fff] p-3"
+          aria-label="Cancel Edit"
         >
           <p className="font-black text-[#f2f2f2]">Cancel</p>
         </button>
@@ -77,6 +78,7 @@ export const EditModal = ({ id, title, priority }: EditModalProps) => {
           type={'submit'}
           onClick={handleSubmit}
           className="w-full bg-[#1A4D2E] p-3"
+          aria-label="Confirm Edit"
         >
           <p className="font-black text-[#f2f2f2]">Edit</p>
         </button>
