@@ -1,4 +1,4 @@
-import { EditModal } from './_ModalStatus'
+import { ConfigModal, EditModal } from './_ModalStatus'
 import Modal from './modal'
 
-export { EditModal, Modal }
+export { ConfigModal, EditModal, Modal }

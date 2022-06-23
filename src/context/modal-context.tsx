@@ -142,7 +142,7 @@ const ModalCard = ({ children }: ComponentWithChildren) => {
       className={`
           absolute bg-[#101010] min-h-[180px] -translate-x-1/2 overflow-y-auto
           -translate-y-1/2 top-[50%] left-[50%] lg:w-[30vw] z-[5] max-h-[80vh]
-          max-w-[90vw] 
+          max-w-[90vw] rounded-sm
         `}
     >
       {children}
@@ -169,7 +169,7 @@ const Header = () => {
     <div
       className={`flex flex-row items-center ${
         title
-          ? 'mb-3.5 border-b border-[#c1c1c1]/30 pb-2 pt-2 text-[#f2f2f2]'
+          ? 'mb-3.5 border-b border-[#c1c1c1]/10 pb-2 pt-2 text-[#f2f2f2]'
           : ''
       }`}
     >

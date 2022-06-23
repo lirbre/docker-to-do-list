@@ -45,7 +45,7 @@ export const EditModal = ({ position }: EditModalProps) => {
             className="w-full bg-secondary p-3 text-[#f2f2f2]"
           />
         </label>
-        <label className="w-1/4 text-[#f2f2f2]">
+        <label className="w-2/5 text-[#f2f2f2] sm:w-1/4">
           <small>New Priority:</small>
           <select
             onChange={(e) =>
