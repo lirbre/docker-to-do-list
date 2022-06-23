@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useCallback, useState } from 'react'
 import { toast } from 'react-toastify'
 
 import { useToDo } from '@/hooks'
@@ -11,28 +11,43 @@ export const CompleteForm = () => {
     priority: '1'
   })
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = useCallback(
+    (e: FormEvent) => {
+      e.preventDefault()
 
-    if (form.title === '') {
-      toast.warn('Please add a Title.')
-      return
-    }
+      if (form.title === '') {
+        toast.warn('Please add a Title.')
+        return
+      }
 
-    const newId = [...ToDoList].sort((a, b) => b.id - a.id)[0]?.id || 0
+      const newId = [...ToDoList].sort((a, b) => b.id - a.id)[0]?.id || 0
 
-    addToDo({
-      id: newId + 1,
-      priority: form.priority,
-      title: form.title,
-      isComplete: false
-    })
+      addToDo({
+        id: newId + 1,
+        priority: form.priority,
+        title: form.title,
+        isComplete: false
+      })
 
-    setForm({
-      title: '',
-      priority: '1'
-    })
-  }
+      setForm({
+        title: '',
+        priority: '1'
+      })
+    },
+    [form, ToDoList]
+  )
+
+  const handleTitleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.value.split('').length > 100) {
+        toast.warn('The limit is 100 characters.')
+        return
+      }
+
+      setForm({ ...form, title: e.target.value })
+    },
+    [form]
+  )
 
   return (
     <form className="flex w-full gap-4" onSubmit={(e) => handleSubmit(e)}>
@@ -40,7 +55,7 @@ export const CompleteForm = () => {
         <p>Add a Title:</p>
         <input
           value={form.title}
-          onChange={(e) => setForm({ ...form, title: e.target.value })}
+          onChange={(e) => handleTitleChange(e)}
           type={'text'}
           className="w-full bg-secondary p-3 text-[#f2f2f2]"
         />

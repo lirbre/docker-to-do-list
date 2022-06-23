@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useCallback, useState } from 'react'
 import { toast } from 'react-toastify'
 
 import { useModal } from '@/context/modal-context'
@@ -32,6 +32,18 @@ export const EditModal = ({ id, title, priority }: EditModalProps) => {
     close()
   }
 
+  const handleTitleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.value.split('').length > 100) {
+        toast.warn('The limit is 100 characters.')
+        return
+      }
+
+      setForm({ ...form, title: e.target.value })
+    },
+    [form]
+  )
+
   return (
     <form
       className="flex w-full flex-col gap-4 px-4 pb-4"
@@ -42,7 +54,7 @@ export const EditModal = ({ id, title, priority }: EditModalProps) => {
           <small>New Title:</small>
           <input
             value={form.title}
-            onChange={(e) => setForm({ ...form, title: e.target.value })}
+            onChange={(e) => handleTitleChange(e)}
             type={'text'}
             className="w-full bg-secondary p-3 text-[#f2f2f2]"
           />
