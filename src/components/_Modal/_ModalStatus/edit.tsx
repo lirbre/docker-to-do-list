@@ -6,14 +6,16 @@ import { useToDo } from '@/hooks'
 import { FormProps, PriorityType } from '@/types/component_types'
 
 interface EditModalProps {
-  position: number
+  id: number
+  title: string
+  priority: PriorityType
 }
 
-export const EditModal = ({ position }: EditModalProps) => {
-  const { ToDoList, editToDo } = useToDo()
+export const EditModal = ({ id, title, priority }: EditModalProps) => {
+  const { editToDo } = useToDo()
   const [form, setForm] = useState<FormProps>({
-    title: ToDoList[position]!.title,
-    priority: ToDoList[position]!.priority
+    title,
+    priority
   })
   const { close } = useModal()
 
@@ -25,7 +27,7 @@ export const EditModal = ({ position }: EditModalProps) => {
       return
     }
 
-    editToDo(position, form.title, form.priority)
+    editToDo(id, form.title, form.priority)
 
     close()
   }
@@ -57,9 +59,9 @@ export const EditModal = ({ position }: EditModalProps) => {
             <option value="" disabled>
               Priority
             </option>
-            <option value={'low'}>Low</option>
-            <option value={'medium'}>Medium</option>
-            <option value={'high'}>High</option>
+            <option value={'1'}>Low</option>
+            <option value={'2'}>Medium</option>
+            <option value={'3'}>High</option>
           </select>
         </label>
       </div>

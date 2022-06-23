@@ -8,7 +8,7 @@ export const CompleteForm = () => {
   const { ToDoList, addToDo } = useToDo()
   const [form, setForm] = useState<FormProps>({
     title: '',
-    priority: 'low'
+    priority: '1'
   })
 
   const handleSubmit = (e: FormEvent) => {
@@ -19,7 +19,7 @@ export const CompleteForm = () => {
       return
     }
 
-    const newId = ToDoList[ToDoList.length - 1]?.id || 0
+    const newId = [...ToDoList].sort((a, b) => b.id - a.id)[0]?.id || 0
 
     addToDo({
       id: newId + 1,
@@ -30,7 +30,7 @@ export const CompleteForm = () => {
 
     setForm({
       title: '',
-      priority: 'low'
+      priority: '1'
     })
   }
 
@@ -57,9 +57,9 @@ export const CompleteForm = () => {
           <option value="" disabled>
             Priority
           </option>
-          <option value={'low'}>Low</option>
-          <option value={'medium'}>Medium</option>
-          <option value={'high'}>High</option>
+          <option value={'1'}>Low</option>
+          <option value={'2'}>Medium</option>
+          <option value={'3'}>High</option>
         </select>
       </label>
     </form>

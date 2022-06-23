@@ -42,15 +42,15 @@ body {
   }
 }
 
-.border-low {
+.border-1 {
   border-color: #FAC213;
 }
 
-.border-medium {
+.border-2 {
   border-color: #F77E21;
 }
 
-.border-high {
+.border-3 {
   border-color: #D61C4E;
 }
 

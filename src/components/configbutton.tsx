@@ -9,7 +9,7 @@ export const ConfigButton = () => {
 
   const handleOpen = () => {
     setBody(<ConfigModal />)
-    setTitle('Setup your To do List')
+    setTitle('Setup your To Do List')
     open()
   }
 

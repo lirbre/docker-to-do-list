@@ -13,4 +13,13 @@ export interface ToDoContextProps {
   removeToDo: (position: number) => void
   ToDoList: CardProps[]
   setToDoList: Dispatch<SetStateAction<CardProps[]>>
+  shouldHide: boolean
+  showComplete(): void
+  hideComplete(): void
+  desiredPriority: PriorityType | 'all'
+  filterPriority(desired: PriorityType | 'all'): void
+  deleteCompletes(): void
+  sortByPriority(): void
+  sortById(): void
+  byPriority: boolean
 }

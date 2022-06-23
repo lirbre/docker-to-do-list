@@ -8,24 +8,24 @@ import { EditModal } from './_Modal'
 export const ToDoCard = ({
   priority,
   title,
-  position,
-  isComplete
+  isComplete,
+  id
 }: CardComponentProps) => {
   const { removeToDo, completeTodo } = useToDo()
   const { setIsOpen, setTitle, setBody } = useModal()
 
-  const handleRemove = () => removeToDo(position)
-  const handleComplete = () => completeTodo(position)
+  const handleRemove = () => removeToDo(id)
+  const handleComplete = () => completeTodo(id)
   const handleEdit = () => {
     setTitle('Editing a To Do')
-    setBody(<EditModal position={position} />)
+    setBody(<EditModal id={id} title={title} priority={priority} />)
     setIsOpen(true)
   }
 
   return (
     <div
       className={`min-h-[100px] flex items-center justify-between gap-4 bg-secondary p-3 rounded-sm shadow-lg shadow-black/25 border-b-2 text-[#f2f2f2] border-${priority} ${
-        isComplete ? 'opacity-70' : 'opacity-100'
+        isComplete ? 'opacity-50' : 'opacity-100'
       }`}
     >
       <button
