@@ -22,7 +22,10 @@ const Index = () => {
         />
       }
     >
-      <div className="container flex w-11/12 flex-col gap-4 overflow-hidden pt-4">
+      <div
+        className="container flex w-11/12 flex-col gap-4 overflow-hidden pt-4"
+        style={{ animation: 'fadeIn .7s' }}
+      >
         <CompleteForm />
         <MappedList />
         <ConfigButton />
