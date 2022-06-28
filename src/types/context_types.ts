@@ -16,8 +16,9 @@ export interface ToDoContextProps {
   shouldHide: boolean
   showComplete(): void
   hideComplete(): void
-  desiredPriority: PriorityType | 'all'
-  filterPriority(desired: PriorityType | 'all'): void
+  desiredPriority: PriorityType[]
+  addPriority(priority: PriorityType): void
+  removePriority(priority: PriorityType): void
   deleteCompletes(): void
   sortByPriority(): void
   sortById(): void

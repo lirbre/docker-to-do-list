@@ -15,8 +15,7 @@ export const MappedList = () => {
       ? [...ToDoList]
           .sort((a, b) => +b.priority - +a.priority)
           .map(({ id, priority, title, isComplete }: CardProps, i: number) => {
-            if (priority !== desiredPriority && desiredPriority !== 'all')
-              return <></>
+            if (desiredPriority.indexOf(priority) === -1) return <></>
 
             return shouldHide && isComplete ? (
               <></>
@@ -33,8 +32,7 @@ export const MappedList = () => {
           })
       : ToDoList.map(
           ({ id, priority, title, isComplete }: CardProps, i: number) => {
-            if (priority !== desiredPriority && desiredPriority !== 'all')
-              return <></>
+            if (desiredPriority.indexOf(priority) === -1) return <></>
 
             return shouldHide && isComplete ? (
               <></>

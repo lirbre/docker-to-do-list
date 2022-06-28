@@ -8,7 +8,8 @@ export const ConfigModal = () => {
     hideComplete,
     showComplete,
     shouldHide,
-    filterPriority,
+    addPriority,
+    removePriority,
     desiredPriority,
     deleteCompletes,
     sortById,
@@ -19,25 +20,48 @@ export const ConfigModal = () => {
     e.target.checked ? hideComplete() : showComplete()
   const handleSort = (e: ChangeEvent<HTMLInputElement>) =>
     e.target.checked ? sortByPriority() : sortById()
-  const handleFilter = (e: ChangeEvent<HTMLSelectElement>) => {
-    filterPriority(e.target.value as PriorityType | 'all')
+  const handleFilter = (
+    e: ChangeEvent<HTMLInputElement>,
+    priority: PriorityType
+  ) => {
+    if (e.target.checked) {
+      addPriority(priority)
+      return
+    }
+    removePriority(priority)
   }
 
   return (
     <div className="flex flex-col gap-2 pb-4">
-      <label className="mx-auto flex w-11/12 items-center justify-between gap-12 text-[#f2f2f2]">
-        <small>Show priorities:</small>
-        <select
-          value={desiredPriority}
-          onChange={(e) => handleFilter(e)}
-          className="w-1/2 cursor-pointer rounded-sm bg-secondary text-sm text-[#f2f2f2] shadow-black/20 drop-shadow-lg"
-        >
-          <option value={'all'}>All</option>
-          <option value={'1'}>Low</option>
-          <option value={'2'}>Medium</option>
-          <option value={'3'}>High</option>
-        </select>
-      </label>
+      <div className="mx-auto flex w-11/12 items-center justify-center gap-4">
+        <label className="mx-auto flex w-1/3 cursor-pointer items-center justify-between gap-12 text-[#f2f2f2]">
+          <small>Low:</small>
+          <input
+            className="h-4 w-4 bg-secondary shadow-black/20 drop-shadow-lg"
+            type={'checkbox'}
+            onChange={(e) => handleFilter(e, '1')}
+            checked={desiredPriority.indexOf('1') !== -1}
+          />
+        </label>
+        <label className="mx-auto flex w-1/3 cursor-pointer items-center justify-between gap-12 text-[#f2f2f2]">
+          <small>Medium:</small>
+          <input
+            className="h-4 w-4 bg-secondary shadow-black/20 drop-shadow-lg"
+            type={'checkbox'}
+            onChange={(e) => handleFilter(e, '2')}
+            checked={desiredPriority.indexOf('2') !== -1}
+          />
+        </label>
+        <label className="mx-auto flex w-1/3 cursor-pointer items-center justify-between gap-12 text-[#f2f2f2]">
+          <small>High:</small>
+          <input
+            className="h-4 w-4 bg-secondary shadow-black/20 drop-shadow-lg"
+            type={'checkbox'}
+            onChange={(e) => handleFilter(e, '3')}
+            checked={desiredPriority.indexOf('3') !== -1}
+          />
+        </label>
+      </div>
       <label className="mx-auto flex w-11/12 cursor-pointer items-center justify-between text-[#f2f2f2]">
         <small>Hide Completes:</small>
         <input

@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useCallback, useState } from 'react'
 import { toast } from 'react-toastify'
 
 import { CardProps, PriorityType } from '@/types/component_types'
@@ -9,9 +9,12 @@ export const ToDoContext = createContext({} as ToDoContextProps)
 export const ToDoProvider = ({ children }: any) => {
   const [ToDoList, setToDoList] = useState<CardProps[]>([])
   const [shouldHide, setShouldHide] = useState<boolean>(false)
-  const [desiredPriority, setDesiredPriority] = useState<PriorityType | 'all'>(
-    'all'
-  )
+  const [desiredPriority, setDesiredPriority] = useState<PriorityType[]>([
+    '1',
+    '2',
+    '3'
+  ])
+
   const [byPriority, setByPriority] = useState<boolean>(false)
 
   const addToDo = ({ id, priority, title, isComplete }: CardProps) => {
@@ -73,9 +76,28 @@ export const ToDoProvider = ({ children }: any) => {
     setShouldHide(false)
   }
 
-  const filterPriority = (desired: PriorityType | 'all') => {
-    setDesiredPriority(desired)
-  }
+  const addPriority = useCallback(
+    (priority: PriorityType) => {
+      setDesiredPriority([...desiredPriority, priority])
+    },
+    [desiredPriority]
+  )
+
+  const removePriority = useCallback(
+    (priority: PriorityType) => {
+      if (desiredPriority.length === 1) {
+        toast.warn('You should show at least one Priority!')
+        return
+      }
+
+      const validIndex = desiredPriority.indexOf(priority)
+      const newPriority: PriorityType[] = [...desiredPriority]
+
+      newPriority.splice(validIndex, 1)
+      setDesiredPriority(newPriority)
+    },
+    [desiredPriority]
+  )
 
   const deleteCompletes = () => {
     const newList = [...ToDoList]
@@ -112,7 +134,8 @@ export const ToDoProvider = ({ children }: any) => {
         showComplete,
         hideComplete,
         desiredPriority,
-        filterPriority,
+        addPriority,
+        removePriority,
         deleteCompletes,
         sortByPriority,
         sortById,
