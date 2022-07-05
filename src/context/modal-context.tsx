@@ -117,8 +117,10 @@ const Main = ({ children }: ComponentWithChildren) => {
     <>
       {shouldRender && (
         <div
+          // eslint-disable-next-line tailwindcss/no-custom-classname
           className="fixed inset-0 z-[15] border-[#4E44CE]/40 backdrop-blur-sm"
           style={{ animation: `${isOpen ? 'fadeIn' : 'fadeOut'} .5s` }}
+          data-cy="modal-container"
         >
           <div
             className="absolute h-full w-full cursor-pointer bg-secondary opacity-70 "
@@ -178,6 +180,7 @@ const Header = () => {
         onClick={handleClose}
         className="ml-auto mr-2 mt-2 cursor-pointer px-1 font-black text-[#f2f2f2]"
         tabIndex={1}
+        data-cy="modalclose-btn"
       >
         <p>X</p>
       </button>

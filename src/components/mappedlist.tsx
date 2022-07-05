@@ -50,7 +50,7 @@ export const MappedList = () => {
 
   return (
     <div
-      data-cy="todocontainer"
+      data-cy="todo-container"
       className="grid w-full grid-cols-2 gap-3 sm:grid-cols-3"
     >
       {ToDoMap}

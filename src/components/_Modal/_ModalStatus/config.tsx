@@ -33,7 +33,10 @@ export const ConfigModal = () => {
 
   return (
     <div className="flex flex-col gap-2 pb-4">
-      <div className="mx-auto flex w-11/12 items-center justify-center gap-4">
+      <div
+        className="mx-auto flex w-11/12 items-center justify-center gap-4"
+        data-cy="priority-config"
+      >
         <label className="mx-auto flex w-1/3 cursor-pointer items-center justify-between gap-12 text-[#f2f2f2]">
           <small>Low:</small>
           <input
@@ -69,6 +72,7 @@ export const ConfigModal = () => {
           type={'checkbox'}
           onChange={(e) => handleHide(e)}
           checked={shouldHide}
+          data-cy="hide-config"
         />
       </label>
       <label className="mx-auto flex w-11/12 cursor-pointer items-center justify-between text-[#f2f2f2]">
@@ -78,6 +82,7 @@ export const ConfigModal = () => {
           type={'checkbox'}
           onChange={(e) => handleSort(e)}
           checked={byPriority}
+          data-cy="sortpriority-config"
         />
       </label>
       <label className="mx-auto flex w-11/12 items-center justify-between text-[#f2f2f2]">
@@ -85,6 +90,7 @@ export const ConfigModal = () => {
         <button
           onClick={() => deleteCompletes()}
           className="rounded-sm bg-[#d1342fff] py-0.5 px-3 hover:opacity-90"
+          data-cy="deletecomplete-config"
         >
           <small>Delete</small>
         </button>
