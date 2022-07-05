@@ -1,25 +1,43 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+    Cypress.Commands.add('createtodo', (priority) => {
+        cy
+        .get('input[name=title]')
+        .type('a to do title')
+        .get('select[name=priority]')
+        .select(priority)
+        .get('[data-cy="todoform"]')
+        .submit() 
+        .get(`.priority-${priority}`)
+    })
+
+    Cypress.Commands.add('completetodo', () => {
+        cy
+        .get('[data-cy="todoitem"]')
+        .click({ multiple: true })
+        .should('have.css', 'opacity')
+        .and('match', /0.5/)
+        .get('[data-cy="complete-btn"]')
+        .click({ multiple: true })
+        .should('have.css', 'opacity')
+        .and('match', /1/)
+    })
+    
+    Cypress.Commands.add('deletetodo', () => {
+        cy
+        .get('[data-cy="delete-btn"]')
+        .click({ multiple: true })
+    })
+
+    Cypress.Commands.add('counttodo', (expected) => {
+        if (!expected) {
+            cy
+            .get('[data-cy="todoitem"]')
+            .should('not.exist')
+        } else {
+            cy
+        .get('[data-cy="todocontainer"]')
+        .find('[data-cy="todoitem"]')
+        .then(todo => {
+            expect(todo).to.have.length(expected);
+        })
+        }
+    })

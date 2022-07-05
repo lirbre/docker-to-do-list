@@ -1,0 +1,11 @@
+it('should create a new to do', () => {
+    cy.visit('http://localhost:3000')
+    cy.window()
+        .createtodo(1)
+        .createtodo(2)
+        .createtodo(3)
+        .counttodo(3)
+        .completetodo({ multiple: true })
+        .deletetodo({ multiple: true })
+        .counttodo(0)
+    })
