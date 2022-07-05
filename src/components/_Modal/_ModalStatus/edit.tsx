@@ -6,12 +6,12 @@ import { useToDo } from '@/hooks'
 import { FormProps, PriorityType } from '@/types/component_types'
 
 interface EditModalProps {
-  id: number
+  itemId: number
   title: string
   priority: PriorityType
 }
 
-export const EditModal = ({ id, title, priority }: EditModalProps) => {
+export const EditModal = ({ itemId, title, priority }: EditModalProps) => {
   const { editToDo } = useToDo()
   const [form, setForm] = useState<FormProps>({
     title,
@@ -27,7 +27,7 @@ export const EditModal = ({ id, title, priority }: EditModalProps) => {
       return
     }
 
-    editToDo(id, form.title, form.priority)
+    editToDo(itemId, form.title, form.priority)
 
     close()
   }

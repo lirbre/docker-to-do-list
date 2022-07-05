@@ -18,12 +18,13 @@ export const ToDoCard = ({
   const handleComplete = () => completeTodo(id)
   const handleEdit = () => {
     setTitle('Editing a To Do')
-    setBody(<EditModal id={id} title={title} priority={priority} />)
+    setBody(<EditModal itemId={id} title={title} priority={priority} />)
     setIsOpen(true)
   }
 
   return (
     <div
+      id={`todo-${id}`}
       className={`min-h-[100px] flex items-center justify-between gap-4 bg-secondary p-3 rounded-sm shadow-lg shadow-black/25 border-b-2 text-[#f2f2f2] border-${priority} ${
         isComplete ? 'opacity-50' : 'opacity-100'
       }`}
