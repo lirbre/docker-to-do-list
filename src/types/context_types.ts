@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from 'react'
-
 import { CardProps, PriorityType } from './component_types'
 
 export interface ToDoContextProps {
@@ -12,7 +10,7 @@ export interface ToDoContextProps {
   completeTodo: (position: number) => void
   removeToDo: (position: number) => void
   ToDoList: CardProps[]
-  setToDoList: Dispatch<SetStateAction<CardProps[]>>
+  setToDoList: (newValue: CardProps[]) => void
   shouldHide: boolean
   showComplete(): void
   hideComplete(): void

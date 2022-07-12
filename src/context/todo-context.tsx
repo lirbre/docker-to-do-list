@@ -1,4 +1,10 @@
-import { createContext, useCallback, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState
+} from 'react'
 import { toast } from 'react-toastify'
 
 import { CardProps, PriorityType } from '@/types/component_types'
@@ -6,8 +12,18 @@ import { ToDoContextProps } from '@/types/context_types'
 
 export const ToDoContext = createContext({} as ToDoContextProps)
 
-export const ToDoProvider = ({ children }: any) => {
-  const [ToDoList, setToDoList] = useState<CardProps[]>([])
+interface ToDoProviderProps {
+  children: ReactNode
+  defaultToDos: CardProps[]
+  saveToDos: (newValue: CardProps[]) => void
+}
+
+export const ToDoProvider = ({
+  children,
+  defaultToDos,
+  saveToDos
+}: ToDoProviderProps) => {
+  const [ToDoList, setToDoList] = useState<CardProps[]>(defaultToDos)
   const [shouldHide, setShouldHide] = useState<boolean>(false)
   const [desiredPriority, setDesiredPriority] = useState<PriorityType[]>([
     '1',
@@ -120,6 +136,8 @@ export const ToDoProvider = ({ children }: any) => {
   const sortById = () => {
     setByPriority(false)
   }
+
+  useEffect(() => saveToDos(ToDoList), [ToDoList])
 
   return (
     <ToDoContext.Provider
