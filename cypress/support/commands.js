@@ -26,7 +26,7 @@ Cypress.Commands.add("deletetodos", () => {
   cy.get('[data-cy="delete-btn"]').click({ multiple: true });
 });
 
-Cypress.Commands.add("shouldhavemanytodos", (expected) => {
+Cypress.Commands.add("counttodos", (expected) => {
   if (!expected) {
     cy.get('[data-cy="todo-item"]').should("not.exist");
   } else {
@@ -42,7 +42,11 @@ Cypress.Commands.add("openconfigmodal", () => {
   cy.get('[data-cy="config-btn"]').click().get('[data-cy="modal-container"]');
 });
 
-Cypress.Commands.add("closeconfigmodal", () => {
+Cypress.Commands.add("openeditmodal", () => {
+  cy.get('[data-cy="edit-btn"]').click().get('[data-cy="modal-container"]');
+});
+
+Cypress.Commands.add("closemodal", () => {
   cy.get('[data-cy="modalclose-btn"]')
     .click()
     .get('[data-cy="modal-container"]')

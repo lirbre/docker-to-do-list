@@ -36,7 +36,7 @@ export const ToDoCard = ({
         }`}
         data-cy="complete-btn"
       >
-        <small>{title}</small>
+        <small data-cy="todo-title">{title}</small>
       </button>
       <div className="flex flex-col items-center justify-center gap-2">
         <button

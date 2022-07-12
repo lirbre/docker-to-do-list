@@ -1,6 +1,6 @@
 it("should create todos", () => {
   cy.visit("http://localhost:3000");
-  cy.window().createtodo(1).createtodo(2).createtodo(3).shouldhavemanytodos(3);
+  cy.window().createtodo(1).createtodo(2).createtodo(3).counttodos(3);
 });
 
 it("should can complete todos", () => {
@@ -16,7 +16,7 @@ it("should open config modal", () => {
 });
 
 it("should close config modal", () => {
-  cy.window().closeconfigmodal();
+  cy.window().closemodal();
 });
 
 it("should can change visibility of low priority", () => {
@@ -73,16 +73,16 @@ it("should can change visibility of medium priority", () => {
 
 it("should can change visibility of complete todos", () => {
   cy.window()
-    .closeconfigmodal()
+    .closemodal()
     .completetodos({ multiple: true })
     .openconfigmodal()
     .get('[data-cy="hide-config"]')
     .click()
-    .shouldhavemanytodos(0)
+    .counttodos(0)
     .get('[data-cy="hide-config"]')
     .click()
-    .shouldhavemanytodos(3)
-    .closeconfigmodal()
+    .counttodos(3)
+    .closemodal()
     .uncompletetodos({ multiple: true })
     .get('[data-cy="todo-item"]')
     .eq(1)
@@ -90,17 +90,17 @@ it("should can change visibility of complete todos", () => {
     .openconfigmodal()
     .get('[data-cy="hide-config"]')
     .click()
-    .shouldhavemanytodos(2)
+    .counttodos(2)
     .get('[data-cy="hide-config"]')
     .click()
-    .closeconfigmodal()
+    .closemodal()
     .get('[data-cy="todo-item"]')
     .eq(1)
     .click();
 });
 
 it("should can delete todos", () => {
-  cy.window().deletetodos({ multiple: true }).shouldhavemanytodos(0);
+  cy.window().deletetodos({ multiple: true }).counttodos(0);
 });
 
 it("should can sort by higher priority", () => {
@@ -113,14 +113,14 @@ it("should can sort by higher priority", () => {
     .openconfigmodal()
     .get('[data-cy="sortpriority-config"]')
     .click()
-    .closeconfigmodal()
+    .closemodal()
     .get('[data-cy="todo-item"]')
     .first()
     .should("have.class", "priority-3")
     .openconfigmodal()
     .get('[data-cy="sortpriority-config"]')
     .click()
-    .closeconfigmodal()
+    .closemodal()
     .get('[data-cy="todo-item"]')
     .first()
     .should("have.class", "priority-1")
@@ -132,6 +132,17 @@ it("should delete all complete todos", () => {
     .openconfigmodal()
     .get('[data-cy="deletecomplete-config"]')
     .click()
-    .shouldhavemanytodos(0)
-    .closeconfigmodal();
+    .counttodos(0)
+    .closemodal();
+});
+
+it("should give a warning if try to delet all complete todos without having them", () => {
+  cy.window()
+  .counttodos(0)
+  .openconfigmodal()
+  .get('[data-cy="deletecomplete-config"]')
+  .click()
+  .get('[role="alert"]')
+  .get('[data-cy="modal-container"]')
+  .closemodal();
 });

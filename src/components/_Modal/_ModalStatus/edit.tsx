@@ -57,6 +57,7 @@ export const EditModal = ({ itemId, title, priority }: EditModalProps) => {
             onChange={(e) => handleTitleChange(e)}
             type={'text'}
             className="w-full bg-secondary p-3 text-[#f2f2f2]"
+            data-cy="edit-title"
           />
         </label>
         <label className="w-2/5 text-[#f2f2f2] sm:w-1/4">
@@ -67,6 +68,7 @@ export const EditModal = ({ itemId, title, priority }: EditModalProps) => {
             }
             className="w-full bg-secondary p-3 text-[#f2f2f2]"
             value={form.priority}
+            data-cy="edit-priority"
           >
             <option value="" disabled>
               Priority
@@ -83,6 +85,7 @@ export const EditModal = ({ itemId, title, priority }: EditModalProps) => {
           onClick={close}
           className="w-full bg-[#d1342fff] p-3"
           aria-label="Cancel Edit"
+          data-cy="edit-cancel"
         >
           <p className="font-black text-[#f2f2f2]">Cancel</p>
         </button>
@@ -91,6 +94,7 @@ export const EditModal = ({ itemId, title, priority }: EditModalProps) => {
           onClick={handleSubmit}
           className="w-full bg-[#1A4D2E] p-3"
           aria-label="Confirm Edit"
+          data-cy="edit-submit"
         >
           <p className="font-black text-[#f2f2f2]">Edit</p>
         </button>
