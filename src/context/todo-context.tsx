@@ -8,30 +8,37 @@ import {
 import { toast } from 'react-toastify'
 
 import { CardProps, PriorityType } from '@/types/component_types'
-import { ToDoContextProps } from '@/types/context_types'
+import { DefaultConfigProps, ToDoContextProps } from '@/types/context_types'
 
 export const ToDoContext = createContext({} as ToDoContextProps)
 
 interface ToDoProviderProps {
   children: ReactNode
   defaultToDos: CardProps[]
-  saveToDos: (newValue: CardProps[]) => void
+  defaultConfig: DefaultConfigProps
+  saveTodoLS: (newValue: CardProps[]) => void
+  saveConfigLS: (newValue: DefaultConfigProps) => void
 }
 
 export const ToDoProvider = ({
   children,
   defaultToDos,
-  saveToDos
+  defaultConfig,
+  saveTodoLS,
+  saveConfigLS
 }: ToDoProviderProps) => {
   const [ToDoList, setToDoList] = useState<CardProps[]>(defaultToDos)
-  const [shouldHide, setShouldHide] = useState<boolean>(false)
-  const [desiredPriority, setDesiredPriority] = useState<PriorityType[]>([
-    '1',
-    '2',
-    '3'
-  ])
+  const [shouldSave, setShouldSave] = useState<boolean>(defaultConfig.saveOnLS)
+  const [shouldHide, setShouldHide] = useState<boolean>(
+    defaultConfig.hideComplete
+  )
+  const [desiredPriority, setDesiredPriority] = useState<PriorityType[]>(
+    defaultConfig.priority
+  )
 
-  const [byPriority, setByPriority] = useState<boolean>(false)
+  const [byPriority, setByPriority] = useState<boolean>(
+    defaultConfig.sortByPriority
+  )
 
   const addToDo = ({ id, priority, title, isComplete }: CardProps) => {
     setToDoList([
@@ -137,7 +144,32 @@ export const ToDoProvider = ({
     setByPriority(false)
   }
 
-  useEffect(() => saveToDos(ToDoList), [ToDoList])
+  const saveToDos = () => {
+    setShouldSave(true)
+  }
+
+  const notSaveToDos = () => {
+    setShouldSave(false)
+  }
+
+  useEffect(() => {
+    if (shouldSave) {
+      saveTodoLS(ToDoList)
+      return
+    }
+    saveTodoLS([])
+  }, [ToDoList, shouldSave])
+
+  useEffect(
+    () =>
+      saveConfigLS({
+        hideComplete: shouldHide,
+        priority: desiredPriority,
+        saveOnLS: shouldSave,
+        sortByPriority: byPriority
+      }),
+    [shouldHide, shouldSave, desiredPriority, byPriority]
+  )
 
   return (
     <ToDoContext.Provider
@@ -157,7 +189,10 @@ export const ToDoProvider = ({
         deleteCompletes,
         sortByPriority,
         sortById,
-        byPriority
+        byPriority,
+        shouldSave,
+        saveToDos,
+        notSaveToDos
       }}
     >
       {children}

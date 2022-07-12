@@ -19,7 +19,7 @@ const useLocalStorage = () => {
       const parsed = JSON.parse(item) as T
       return parsed
     }
-    return []
+    return defaultValue
   }
   return { setValue, getValue }
 }

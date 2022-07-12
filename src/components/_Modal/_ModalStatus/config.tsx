@@ -14,7 +14,10 @@ export const ConfigModal = () => {
     deleteCompletes,
     sortById,
     sortByPriority,
-    byPriority
+    byPriority,
+    shouldSave,
+    saveToDos,
+    notSaveToDos
   } = useToDo()
   const handleHide = (e: ChangeEvent<HTMLInputElement>) =>
     e.target.checked ? hideComplete() : showComplete()
@@ -30,6 +33,8 @@ export const ConfigModal = () => {
     }
     removePriority(priority)
   }
+  const handleSave = (e: ChangeEvent<HTMLInputElement>) =>
+    e.target.checked ? saveToDos() : notSaveToDos()
 
   return (
     <div className="flex flex-col gap-2 pb-4">
@@ -83,6 +88,16 @@ export const ConfigModal = () => {
           onChange={(e) => handleSort(e)}
           checked={byPriority}
           data-cy="sortpriority-config"
+        />
+      </label>
+      <label className="mx-auto flex w-11/12 cursor-pointer items-center justify-between text-[#f2f2f2]">
+        <small>Should save To Dos on LocalStorage:</small>
+        <input
+          className="h-4 w-4 bg-secondary shadow-black/20 drop-shadow-lg"
+          type={'checkbox'}
+          onChange={(e) => handleSave(e)}
+          checked={shouldSave}
+          data-cy="savels-config"
         />
       </label>
       <label className="mx-auto flex w-11/12 items-center justify-between text-[#f2f2f2]">

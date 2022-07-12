@@ -1,5 +1,12 @@
 import { CardProps, PriorityType } from './component_types'
 
+export interface DefaultConfigProps {
+  saveOnLS: boolean
+  hideComplete: boolean
+  sortByPriority: boolean
+  priority: PriorityType[]
+}
+
 export interface ToDoContextProps {
   addToDo: ({ id, priority, title }: CardProps) => void
   editToDo: (
@@ -21,4 +28,7 @@ export interface ToDoContextProps {
   sortByPriority(): void
   sortById(): void
   byPriority: boolean
+  saveToDos: () => void
+  notSaveToDos: () => void
+  shouldSave: boolean
 }
