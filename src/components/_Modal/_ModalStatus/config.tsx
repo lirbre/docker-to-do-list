@@ -91,7 +91,7 @@ export const ConfigModal = () => {
         />
       </label>
       <label className="mx-auto flex w-11/12 cursor-pointer items-center justify-between text-[#f2f2f2]">
-        <small>Save List locally:</small>
+        <small>Save List Locally:</small>
         <input
           className="h-4 w-4 bg-secondary shadow-black/20 drop-shadow-lg"
           type={'checkbox'}
