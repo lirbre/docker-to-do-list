@@ -4,7 +4,9 @@
 
 ### E2E Test Integration
 --------------------------------
-- [to add]
+https://user-images.githubusercontent.com/86065449/182251364-e993188d-6114-4bad-adc5-632ec63ebfcc.mp4
+
+https://user-images.githubusercontent.com/86065449/182251371-c1f43018-e055-4204-9bb0-eb228cf5ed88.mp4
 
 ### Technologies
 --------------------------------
