@@ -13,19 +13,20 @@ const NUMBER_TO_PRIORITY = {
 export const MappedList = () => {
   const { ToDoList, shouldHide, desiredPriority, byPriority } = useToDo()
   const completedTodos = useMemo(
-    () => (shouldHide ? ToDoList.filter((item) => !item.isComplete) : ToDoList),
+    () =>
+      shouldHide ? [...ToDoList].filter((item) => !item.isComplete) : ToDoList,
     [ToDoList, shouldHide]
   )
   const prioritySort = useMemo(
     () =>
-      byPriority
-        ? completedTodos
-        : completedTodos.sort((a, b) => +b.priority - +a.priority),
-    [completedTodos, byPriority]
+      !byPriority
+        ? [...completedTodos]
+        : [...completedTodos].sort((a, b) => +b.priority - +a.priority),
+    [completedTodos, byPriority, ToDoList]
   )
   const desiredSort = useMemo(
     () =>
-      prioritySort.filter(
+      [...prioritySort].filter(
         (item) => desiredPriority.indexOf(item.priority) !== -1
       ),
     [prioritySort, desiredPriority]
@@ -33,7 +34,7 @@ export const MappedList = () => {
   const memoList = useMemo(
     () =>
       desiredSort.length > 0 &&
-      desiredSort.map(({ id, priority, title, isComplete }, i: number) => (
+      [...desiredSort].map(({ id, priority, title, isComplete }, i: number) => (
         <ToDoCard
           key={id}
           id={id}
