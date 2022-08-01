@@ -37,7 +37,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const setConfig = (newValue: DefaultConfigProps) =>
     setValue<DefaultConfigProps>('todoconfig', newValue)
 
-  // prevent hydration problem from react 18
+  // prevent hydration problem from react 18y
   useEffect(() => setShowChild(true), [])
 
   if (!showChild) {
