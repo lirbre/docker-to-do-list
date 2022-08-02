@@ -49,24 +49,33 @@ export const MappedList = () => {
 
   if (ToDoList.length === 0) {
     return (
-      <h6 className="pt-12 text-center">
+      <p
+        style={{ animation: 'fadeIn .7s' }}
+        className="w-full bg-secondary py-3 text-center text-[#fff]"
+      >
         You don&apos;t have any registered To Do.
-      </h6>
+      </p>
     )
   }
 
   if (completedTodos.length === 0 && shouldHide) {
     return (
-      <h6 className="pt-12 text-center">
+      <p
+        style={{ animation: 'fadeIn .7s' }}
+        className="w-full bg-secondary py-3 text-center text-[#fff]"
+      >
         You don&apos;t have any uncompleted To Do.
-      </h6>
+      </p>
     )
   }
 
   if (desiredSort.length === 0) {
     return (
-      <h6 className="pt-12 text-center">
-        You don&apos;t have any{' '}
+      <p
+        style={{ animation: 'fadeIn .7s' }}
+        className="w-full bg-secondary py-3 text-center text-[#fff]"
+      >
+        You don&apos;t have any {shouldHide ? ' uncompleted ' : ''}
         {desiredPriority.map(
           (item, i) =>
             `${NUMBER_TO_PRIORITY[item]}${
@@ -75,7 +84,7 @@ export const MappedList = () => {
             `
         )}{' '}
         To Do.
-      </h6>
+      </p>
     )
   }
 
