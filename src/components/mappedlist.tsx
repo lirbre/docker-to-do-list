@@ -1,4 +1,6 @@
 import { useMemo } from 'react'
+import { AiOutlineFileSearch, AiOutlineOrderedList } from 'react-icons/ai'
+import { BiTask } from 'react-icons/bi'
 
 import { useToDo } from '@/hooks'
 
@@ -51,9 +53,10 @@ export const MappedList = () => {
     return (
       <p
         style={{ animation: 'fadeIn .7s' }}
-        className="w-full bg-secondary py-3 text-center text-[#fff]"
+        className="flex w-full items-center justify-center gap-4 bg-secondary py-3 text-center text-[#fff]"
       >
-        You don&apos;t have any registered To Do.
+        <AiOutlineFileSearch className="text-lg" /> You don&apos;t have any
+        registered To Do.
       </p>
     )
   }
@@ -62,9 +65,10 @@ export const MappedList = () => {
     return (
       <p
         style={{ animation: 'fadeIn .7s' }}
-        className="w-full bg-secondary py-3 text-center text-[#fff]"
+        className="flex w-full items-center justify-center gap-4 bg-secondary py-3 text-center text-[#fff]"
       >
-        You don&apos;t have any uncompleted To Do.
+        <BiTask className="text-lg" /> You don&apos;t have any uncompleted To
+        Do.
       </p>
     )
   }
@@ -73,9 +77,10 @@ export const MappedList = () => {
     return (
       <p
         style={{ animation: 'fadeIn .7s' }}
-        className="w-full bg-secondary py-3 text-center text-[#fff]"
+        className="flex w-full items-center justify-center gap-4 bg-secondary py-3 text-center text-[#fff]"
       >
-        You don&apos;t have any {shouldHide ? ' uncompleted ' : ''}
+        <AiOutlineOrderedList className="text-lg" /> You don&apos;t have any{' '}
+        {shouldHide ? ' uncompleted ' : ''}
         {desiredPriority.map(
           (item, i) =>
             `${NUMBER_TO_PRIORITY[item]}${
