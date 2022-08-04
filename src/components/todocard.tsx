@@ -27,7 +27,7 @@ export const ToDoCard = ({
       className={`min-h-[100px] flex items-center justify-between gap-4 bg-secondary p-3 rounded-sm shadow-lg shadow-black/25 border-b-2 text-[#f2f2f2] priority-${priority} ${
         isComplete ? 'opacity-50' : 'opacity-100'
       }`}
-      style={{ animation: 'fadeIn .7s' }}
+      style={{ animation: `${isComplete ? 'fadeIn--complete' : 'fadeIn'} .3s` }}
       data-cy="todo-item"
     >
       <button

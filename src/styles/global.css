@@ -63,6 +63,15 @@ body {
   }
 }
 
+@keyframes fadeIn--complete {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
 @keyframes fadeOut {
   0% {
     opacity: 1;
