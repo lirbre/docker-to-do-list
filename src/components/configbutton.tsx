@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { FcDataConfiguration } from 'react-icons/fc'
 
 import { useModal } from '@/context/modal-context'
@@ -13,16 +14,19 @@ export const ConfigButton = () => {
     open()
   }
 
-  return (
-    <button
-      onClick={handleOpen}
-      className="fixed bottom-8 right-8 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-secondary opacity-75 backdrop-blur-lg"
-      aria-label="Settings Button"
-      data-cy="config-btn"
-    >
-      <p className="font-black text-[#f2f2f2] hover:opacity-80">
-        <FcDataConfiguration size={32} />
-      </p>
-    </button>
+  return useMemo(
+    () => (
+      <button
+        onClick={handleOpen}
+        className="fixed bottom-8 right-8 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-secondary opacity-75 backdrop-blur-lg"
+        aria-label="Settings Button"
+        data-cy="config-btn"
+      >
+        <p className="font-black text-[#f2f2f2] hover:opacity-80">
+          <FcDataConfiguration size={32} />
+        </p>
+      </button>
+    ),
+    []
   )
 }
