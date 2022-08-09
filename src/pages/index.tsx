@@ -1,18 +1,9 @@
-import { useEffect } from 'react'
-
 import { ConfigButton, MappedList, Modal } from '@/components'
 import { CompleteForm } from '@/components/completeform'
-import { useToDo } from '@/hooks/useToDo'
 import { Meta } from '@/layouts'
 import { Main } from '@/templates'
 
 const Index = () => {
-  const { ToDoList } = useToDo()
-
-  useEffect(() => {
-    console.log('my todo list ->', ToDoList)
-  }, [ToDoList])
-
   return (
     <Main
       meta={
