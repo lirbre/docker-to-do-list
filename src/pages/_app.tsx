@@ -44,6 +44,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     return null
   }
 
+  console.log('extra render')
+
   return (
     <ThemeProvider forcedTheme={'dark'}>
       <ModalProvider>
