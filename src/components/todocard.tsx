@@ -12,7 +12,7 @@ export const ToDoCard = ({
   isComplete,
   id
 }: CardComponentProps) => {
-  const { removeToDo, completeTodo } = useToDo()
+  const { removeToDo, completeTodo, ToDoList } = useToDo()
   const { setIsOpen, setTitle, setBody } = useModal()
 
   const handleRemove = () => removeToDo(id)
@@ -63,5 +63,5 @@ export const ToDoCard = ({
         </div>
       </div>
     )
-  }, [priority, id, title, isComplete])
+  }, [priority, id, title, isComplete, ToDoList])
 }
