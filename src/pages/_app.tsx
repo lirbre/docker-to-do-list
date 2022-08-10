@@ -22,18 +22,31 @@ const defaultConfig: DefaultConfigProps = {
   priority: ['1', '2', '3']
 }
 
+interface LocalStorageProps {
+  LocalStorageToDos: CardProps[]
+  LocalStorageConfig: DefaultConfigProps
+}
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { getValue, setValue } = useLocalStorage()
   const [showChild, setShowChild] = useState(false)
   // useState to make it async
-  const [LocalStorageToDos] = useState<CardProps[]>(() =>
-    getValue<CardProps[]>('todolist', [])
-  )
-  const [LocalStorageConfig] = useState<DefaultConfigProps>(() =>
-    getValue<DefaultConfigProps>('todoconfig', defaultConfig)
-  )
+  // agroup Todos e Config in the same useState
+  // to prevent extra hooks being called
+  const [{ LocalStorageToDos, LocalStorageConfig }] =
+    useState<LocalStorageProps>(() => {
+      const todos = getValue<CardProps[]>('todolist', [])
+      const config = getValue<DefaultConfigProps>('todoconfig', defaultConfig)
+
+      return {
+        LocalStorageToDos: todos,
+        LocalStorageConfig: config
+      }
+    })
+
   const setToDos = (newValue: CardProps[]) =>
     setValue<CardProps[]>('todolist', newValue)
+
   const setConfig = (newValue: DefaultConfigProps) =>
     setValue<DefaultConfigProps>('todoconfig', newValue)
 
@@ -43,8 +56,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   if (!showChild) {
     return null
   }
-
-  console.log('extra render')
 
   return (
     <ThemeProvider forcedTheme={'dark'}>
@@ -56,8 +67,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           saveConfigLS={setConfig}
         >
           <Component {...pageProps} />
-          <ToastContainer toastClassName="text-sm" theme="dark" />
         </ToDoProvider>
+        <ToastContainer toastClassName="text-sm" theme="dark" />
       </ModalProvider>
     </ThemeProvider>
   )
