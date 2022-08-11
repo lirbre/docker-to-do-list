@@ -63,6 +63,8 @@ export const CompleteForm = () => {
           type={'text'}
           className="w-full bg-secondary p-3 text-[#f2f2f2]"
           name="title"
+          tabIndex={1}
+          aria-required={true}
         />
       </label>
       <label className="w-2/5 text-[#f2f2f2] sm:w-1/4">
@@ -74,6 +76,7 @@ export const CompleteForm = () => {
           value={form.priority}
           className="w-full bg-secondary p-3 text-[#f2f2f2]"
           name="priority"
+          tabIndex={2}
         >
           <option value="" disabled>
             Priority
