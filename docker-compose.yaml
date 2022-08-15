@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+  todolist:
+    build: frontend
+    container_name: todolist-c
+    ports: 
+      - '3000:3000'
+    stdin_open: true
+    tty: true
