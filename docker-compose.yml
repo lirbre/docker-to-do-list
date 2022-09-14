@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  web:
+    build: app
+    container_name: todolist-container
+    restart: always
+    volumes:
+      - ./node_modules:/app/node_modules
+      - ./src/app/src
+      - ./cypress:/app/cypress
+    ports:
+      - 3000:3000

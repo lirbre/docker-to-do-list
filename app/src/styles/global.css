@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* UI & surface colors */
+
+  --bg-primary: #ffffff;
+  --bg-secondary: #8c8c8c;
+
+  --text-primary: #585858;
+  --text-secondary: #242424;
+
+  /* Brand colors */
+  --red: #ef4444;
+  --blue: #353739;
+}
+
+.dark,
+[data-theme='dark'] {
+
+  --bg-primary: #0a0a0aff;
+  --bg-secondary: #1a181aff;
+
+  --text-primary: #eee3c1ff;
+  --text-secondary: #8c8c8c;
+}
+
+html,
+body {
+  @apply bg-primary text-secondary overflow-x-hidden break-words font-nunito font-semibold;
+}
+
+.lock-scroll {
+  overflow-y: hidden !important;
+}
+
+@layer utilities {
+  .container {
+    @apply px-1 md:px-0 mx-auto;
+    max-width: clamp(728px, 75vw, calc(1440px - 300px));
+  }
+}
+
+.priority-1 {
+  border-color: #FAC213;
+}
+
+.priority-2 {
+  border-color: #F77E21;
+}
+
+.priority-3 {
+  border-color: #D61C4E;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn--complete {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
